@@ -1,23 +1,24 @@
-// src/components/form/index.tsx
-
-"use client"; // Ensure client component
+'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 const LoginForm = () => {
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
-  const router = useRouter(); // Use useRouter within the component
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic
     try {
-      const response = await axios.post('/api/login', { usuario, senha });
-      if (response.status === 200) {
-        router.push('/dashboard'); // Use router.push for navigation
+      const response = await axios.post('http://localhost:3001/users', { usuario, senha });
+      
+      console.log(response)
+      
+      if (response.status === 201) {
+        localStorage.setItem('isLoggedIn', 'true');
+        router.push('/dashboard');
       }
     } catch (error) {
       console.error('Login failed', error);

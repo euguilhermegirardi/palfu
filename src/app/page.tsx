@@ -1,11 +1,20 @@
-import LoginForm from '@/components/form';
+'use client'; // Indicate this is a client component
 
-const LoginPage = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <LoginForm />
-    </div>
-  );
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Login from './login/page';
+
+const HomePage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      router.push('/dashboard');
+    }
+  }, [router]);
+
+  return <Login />;
 };
 
-export default LoginPage;
+export default HomePage;

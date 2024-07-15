@@ -1,14 +1,12 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import DashboardLayout from './layout';
 
 const DashboardPage = () => {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.push('/dashboard/lista-de-automoveis');
-  }, [router]);
-
-  return null;
+  return (
+    <DashboardLayout>
+      <div>Welcome to the Dashboard!</div>
+      {/* Additional content can be placed here if needed */}
+    </DashboardLayout>
+  );
 };
 
 export default DashboardPage;

@@ -1,10 +1,9 @@
 const RegistrarAutomovel = () => {
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Registrar Automovel</h1>
-      {/* Add your content here */}
+      <h1>Registro de Automoveis</h1>
     </div>
-  );
-};
+  )
+}
 
-export default RegistrarAutomovel;
+export default RegistrarAutomovel

@@ -1,10 +1,9 @@
-const ListaDeAutomoveis = () => {
+const ListagemDeAutomoveis = () => {
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Lista de Automoveis</h1>
-      {/* Add your content here */}
+      <h1>Listagem de Automoveis</h1>
     </div>
-  );
-};
+  )
+}
 
-export default ListaDeAutomoveis;
+export default ListagemDeAutomoveis
