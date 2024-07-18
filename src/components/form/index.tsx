@@ -1,35 +1,38 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import axios from 'axios';
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
 
 const LoginForm = () => {
-  const [usuario, setUsuario] = useState('');
-  const [senha, setSenha] = useState('');
-  const router = useRouter();
+  const [usuario, setUsuario] = useState('')
+  const [senha, setSenha] = useState('') 
+  const router = useRouter() 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
+
     try {
-      const response = await axios.post('http://localhost:3001/users', { usuario, senha });
-      
+      const response = await axios.get('https://palfu-api.onrender.com/api/users');
       console.log(response)
+      const user = response.data.find((user: any) => user.username === usuario && user.password === senha);
       
-      if (response.status === 201) {
-        localStorage.setItem('isLoggedIn', 'true');
+      if (user) {
+        localStorage.setItem('isLoggedIn', 'true')
         router.push('/dashboard');
+      } else {
+        alert('Login failed: Incorrect username or password')
       }
     } catch (error) {
-      console.error('Login failed', error);
+      console.error('Login failed', error)
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-full max-w-sm">
+    <form onSubmit={handleSubmit} className="bg-teal-700 p-6 rounded shadow-2xl shadow-slate-800 w-full max-w-sm">
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="usuario">
-          Usuário
+        <label className="block text-teal-100 text-sm font-bold mb-2" htmlFor="usuario">
+          USUARIO
         </label>
         <input
           type="text"
@@ -40,8 +43,8 @@ const LoginForm = () => {
         />
       </div>
       <div className="mb-6">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="senha">
-          Senha
+        <label className="block text-teal-100 text-sm font-bold mb-2" htmlFor="senha">
+          SENHA
         </label>
         <input
           type="password"
@@ -54,9 +57,9 @@ const LoginForm = () => {
       <div className="flex items-center justify-between">
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-cyan-950 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          Entrar
+          ENTRAR
         </button>
       </div>
     </form>
