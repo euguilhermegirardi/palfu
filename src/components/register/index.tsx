@@ -15,7 +15,7 @@ const RegistrarAutomovel = () => {
     const number = vehicle
 
     try {
-      const response = await axios.get('https://api.render.com/deploy/srv-cqcjc5o8fa8c73criag0?key=nVfacoOUH1Y/api/list')
+      const response = await axios.get('https://palfu-api.onrender.com/api/list')
       const isRegistered = response.data.some((item: { number: string }) => item.number === number)
 
       if (isRegistered) {
@@ -23,7 +23,7 @@ const RegistrarAutomovel = () => {
         return
       }
 
-      const postResponse = await axios.post('https://api.render.com/deploy/srv-cqcjc5o8fa8c73criag0?key=nVfacoOUH1Y/api/list', { number })
+      const postResponse = await axios.post('https://palfu-api.onrender.com/api/list', { number })
       
       if (postResponse.status === 201) {
         setVehicle('')
