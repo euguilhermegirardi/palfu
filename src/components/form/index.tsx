@@ -5,26 +5,30 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
 const LoginForm = () => {
-  const [usuario, setUsuario] = useState('')
-  const [senha, setSenha] = useState('') 
-  const router = useRouter() 
+  const [usuario, setUsuario] = useState('');
+  const [senha, setSenha] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
+    setLoading(true);
 
     try {
       const response = await axios.get('https://palfu-api.onrender.com/api/users');
-      console.log(response)
+      console.log(response);
       const user = response.data.find((user: any) => user.username === usuario && user.password === senha);
       
       if (user) {
-        localStorage.setItem('isLoggedIn', 'true')
+        localStorage.setItem('isLoggedIn', 'true');
         router.push('/dashboard');
       } else {
-        alert('Login failed: Incorrect username or password')
+        alert('Login failed: Incorrect username or password');
       }
     } catch (error) {
-      console.error('Login failed', error)
+      console.error('Login failed', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -58,10 +62,34 @@ const LoginForm = () => {
         <button
           type="submit"
           className="bg-cyan-950 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          disabled={loading}
         >
-          ENTRAR
+          {loading ? (
+            <div className="spinner"></div>
+          ) : (
+            'ENTRAR'
+          )}
         </button>
       </div>
+      <style jsx>{`
+        .spinner {
+          border: 4px solid rgba(0, 0, 0, 0.1);
+          border-left-color: #ffffff;
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
     </form>
   );
 };
