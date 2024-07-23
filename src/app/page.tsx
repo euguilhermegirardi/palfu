@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Login from './login/page';
+import DashboardLayout from './dashboard/layout'
 
 const HomePage = () => {
   const router = useRouter();
@@ -14,7 +14,7 @@ const HomePage = () => {
     }
   }, [router]);
 
-  return <Login />;
+  return <DashboardLayout />;
 };
 
 export default HomePage;
