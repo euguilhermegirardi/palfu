@@ -146,7 +146,7 @@ export const list: IVehicle[] = [
   },
   {
     id: 36,
-    number: 'DQO4A24',
+    number: 'DQP4A24',
   },
   {
     id: 37,
@@ -250,7 +250,7 @@ export const list: IVehicle[] = [
   },
   {
     id: 62,
-    number: 'LMC2801',
+    number: 'LMC2I59',
   },
   {
     id: 63,
