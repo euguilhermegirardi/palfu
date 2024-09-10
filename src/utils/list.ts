@@ -528,4 +528,12 @@ export const list: IVehicle[] = [
     id: 131,
     number: 'ETE0J75',
   },
+  {
+    id: 132,
+    number: 'OTU9149',
+  },
+  {
+    id: 133,
+    number: 'DHA0553',
+  }
 ];
